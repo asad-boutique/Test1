@@ -16,7 +16,6 @@ jobs:
 
 #3
   create-release:
-    needs: deploy
     name: create-release
     runs-on: ubuntu-latest
     timeout-minutes: 10
