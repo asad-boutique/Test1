@@ -1,4 +1,4 @@
-name: main branch release workflow
+name: main branch release workflow2
 
 on:
   push:
