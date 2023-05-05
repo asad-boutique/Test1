@@ -1,4 +1,4 @@
-name: develop branch Deployment Workflow For reception-dashboard-client-develop
+name: test release workflow
 
 on:
 

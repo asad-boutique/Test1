@@ -1,0 +1,50 @@
+name: main branch release workflow
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+
+
+
+
+jobs:
+
+
+
+
+
+
+#3
+  create-release:
+    name: create-release
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@master
+        
+      - name: package.json info
+        id: info
+        uses: jaywcjlove/github-action-package@main
+
+      - run: echo "name - ${{ steps.info.outputs.name }}"
+      - run: echo "version - ${{ steps.info.outputs.version }}"
+        
+
+      - uses: asad-boutique/github-release@v2.0.5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v${{ steps.info.outputs.version }}
+          name: v${{ steps.info.outputs.version }}
+          body: ${{ github.event.head_commit.message }}
+          allow_override: 'true'
+          
